@@ -1,16 +1,18 @@
 // src/TodoList.js
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 
 const TodoList = () => {
     const [tasks, setTasks] = useState([]);
     const [taskInput, setTaskInput] = useState('');
     const [filter, setFilter] = useState('all');
 
+    // Load tasks from localStorage on component mount
     useEffect(() => {
         const storedTasks = JSON.parse(localStorage.getItem('tasks'));
         if (storedTasks) setTasks(storedTasks);
     }, []);
 
+    // Save tasks to localStorage whenever the tasks array changes
     useEffect(() => {
         localStorage.setItem('tasks', JSON.stringify(tasks));
     }, [tasks]);
